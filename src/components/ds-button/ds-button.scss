@@ -1,0 +1,43 @@
+:host {
+  display: block;
+}
+
+button {
+  padding: 0;
+  font-size: 20px;
+  height: 52px;
+  min-width: 90px;
+  margin-right: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  position: relative;
+  transition: all 100ms ease-in-out;
+
+  &::before {
+    content: '';
+    position: absolute;
+    border-radius: 2px;
+    top: -2px;
+    right: -2px;
+    bottom: -2px;
+    left: -2px;
+    transition: all 100ms ease-in-out;
+  }
+}
+
+.button--focused:before {
+  background-color: #e12a48;
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.button--clicked:before {
+  background-color: #bf2c45;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.8);
+}
+
+.button-text {
+  color: white;
+  position: relative;
+}
