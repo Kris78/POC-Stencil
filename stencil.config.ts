@@ -5,7 +5,6 @@ import { sass } from '@stencil/sass';
 import autoprefixer from 'autoprefixer';
 
 export const config: Config = {
-  buildEs5: true,
   namespace: 'ds-canal',
   outputTargets: [
     reactOutputTarget({
