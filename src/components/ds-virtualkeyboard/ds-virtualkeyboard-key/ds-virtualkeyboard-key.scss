@@ -1,0 +1,103 @@
+@import 'src/styles/_colors.scss';
+@import 'src/styles/_variables.scss';
+
+:host {
+  display: block;
+}
+
+/* PLACEHOLDERS
+---------------------------------------------------*/
+
+%virtualKeyboardKey__isArrow {
+  &:after {
+    content: '';
+    width: 11px;
+    height: 20px;
+    display: block;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
+
+/* VIRTUALKEYBOARD KEY
+---------------------------------------------------*/
+
+.virtualkeyboard-key {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Open Sans', sans-serif;
+  color: #e4e4e5;
+  font-size: 22px;
+  text-align: center;
+  min-height: 50px;
+  width: 42px;
+  background-color: $color_virtualkeyboard-key;
+  margin-bottom: 2px;
+  user-select: none;
+}
+
+.virtualkeyboard-key--isBackspace {
+  width: 88px;
+  height: 100%;
+  font-weight: 600;
+}
+
+.virtualkeyboard-key--isClear {
+  width: 88px;
+  height: 100%;
+
+  &:after {
+    content: '';
+    width: 22px;
+    height: 18px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('/assets/clean.svg');
+  }
+}
+
+.virtualkeyboard-key--isSpecial {
+  letter-spacing: -1px;
+}
+
+.virtualkeyboard-key--isPrevArrow {
+  @extend %virtualKeyboardKey__isArrow;
+
+  &:after {
+    background-image: url('/assets/greyArrow.svg');
+    transform: rotate(180deg);
+  }
+}
+
+.virtualkeyboard-key--isNextArrow {
+  @extend %virtualKeyboardKey__isArrow;
+
+  &:after {
+    background-image: url('/assets/greyArrow.svg');
+  }
+}
+
+.virtualkeyboard-key--isFooter {
+  font-weight: 600;
+  background-color: transparent;
+  width: 107px;
+}
+
+.virtualkeyboard-key--isActive {
+  background-color: $color_virtualkeyboard-key;
+}
+
+.virtualkeyboard-key--isSelected {
+  position: relative;
+  border-radius: $border-radius-small;
+  color: $color_white;
+  background-color: $color_link-normal;
+  box-shadow: 0px 4px 7px 0px $color_boxShadow;
+}
+
+.virtualkeyboard-key--isClicked {
+  background-color: $color_link-hover;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.8);
+  transition: all 100ms ease-in-out;
+}

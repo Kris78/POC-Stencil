@@ -1,9 +1,9 @@
-import { Component, Prop, h, Listen } from '@stencil/core';
-import { format } from '../../utils/utils';
+import { Component, Prop, h, Listen } from "@stencil/core";
+import { format } from "../../utils/utils";
 
 @Component({
-  tag: 'my-component',
-  styleUrl: 'my-component.css',
+  tag: "my-component",
+  styleUrl: "my-component.css",
   shadow: true,
 })
 export class MyComponent {
@@ -22,9 +22,14 @@ export class MyComponent {
    */
   @Prop() last: string;
 
-  @Listen('buttonClick', { capture: true })
+  @Listen("buttonClick", { capture: true })
   handleButtonClick(event: number) {
-    console.log('catch event', event);
+    console.log("catch event", event);
+  }
+
+  @Listen("virtualKeyboardStateEvent", { capture: true })
+  handleVirtualKeyboardClick(event: CustomEvent) {
+    console.log("catch vk event", event.detail);
   }
 
   private getText(): string {

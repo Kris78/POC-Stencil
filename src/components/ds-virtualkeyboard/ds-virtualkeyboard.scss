@@ -1,0 +1,35 @@
+@import "src/styles/_colors.scss";
+
+:host {
+  display: block;
+}
+
+/* VIRTUAL KEYBOARD
+---------------------------------------------------*/
+
+.virtualkeyboard {
+  position: relative;
+  width: 790px;
+  margin: 0 auto;
+
+  &__wrapper {
+    display: flex;
+    z-index: 1;
+    width: 790px;
+    margin: 0;
+    background-color: $color_virtualkeyboard-background;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+    background-color: $color_virtualkeyboard-footer;
+    padding-top: 2px;
+  }
+}

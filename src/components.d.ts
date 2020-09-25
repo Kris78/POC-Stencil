@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { VirtualKeyboardMode, VirtualKeyboardState } from "./components/ds-virtualkeyboard/types";
 export namespace Components {
     interface DsButton {
         /**
@@ -19,6 +20,46 @@ export namespace Components {
           * The width (in px) of the button\ `auto` by default
          */
         "width": number;
+    }
+    interface DsVirtualkeyboard {
+        /**
+          * Set a custom state before mount the component
+         */
+        "initialState": VirtualKeyboardState;
+        /**
+          * Put the focus on a key by its `id`
+         */
+        "selectedId": string;
+    }
+    interface DsVirtualkeyboardKey {
+        /**
+          * The `id` of the component
+         */
+        "idProp": string;
+        /**
+          * The `active` state of the component
+         */
+        "isActive": boolean;
+        /**
+          * The `selected` state of the component
+         */
+        "isSelected": boolean;
+        /**
+          * The `Mode` of the component > `lowercase`, `uppercase` or `specials`
+         */
+        "mode": VirtualKeyboardMode;
+        /**
+          * A function triggered on `click` event on the component
+         */
+        "pressKey": (T: string) => void;
+        /**
+          * The symbol displayed on the component
+         */
+        "sign": string;
+        /**
+          * An alternative symbol displayed after clicked on the *special button*
+         */
+        "special": string;
     }
     interface MyComponent {
         /**
@@ -42,6 +83,18 @@ declare global {
         prototype: HTMLDsButtonElement;
         new (): HTMLDsButtonElement;
     };
+    interface HTMLDsVirtualkeyboardElement extends Components.DsVirtualkeyboard, HTMLStencilElement {
+    }
+    var HTMLDsVirtualkeyboardElement: {
+        prototype: HTMLDsVirtualkeyboardElement;
+        new (): HTMLDsVirtualkeyboardElement;
+    };
+    interface HTMLDsVirtualkeyboardKeyElement extends Components.DsVirtualkeyboardKey, HTMLStencilElement {
+    }
+    var HTMLDsVirtualkeyboardKeyElement: {
+        prototype: HTMLDsVirtualkeyboardKeyElement;
+        new (): HTMLDsVirtualkeyboardKeyElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -50,6 +103,8 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "ds-button": HTMLDsButtonElement;
+        "ds-virtualkeyboard": HTMLDsVirtualkeyboardElement;
+        "ds-virtualkeyboard-key": HTMLDsVirtualkeyboardKeyElement;
         "my-component": HTMLMyComponentElement;
     }
 }
@@ -72,6 +127,50 @@ declare namespace LocalJSX {
          */
         "width"?: number;
     }
+    interface DsVirtualkeyboard {
+        /**
+          * Set a custom state before mount the component
+         */
+        "initialState"?: VirtualKeyboardState;
+        /**
+          * Emit component's state after each changes
+         */
+        "onVirtualKeyboardStateEvent"?: (event: CustomEvent<VirtualKeyboardState>) => void;
+        /**
+          * Put the focus on a key by its `id`
+         */
+        "selectedId"?: string;
+    }
+    interface DsVirtualkeyboardKey {
+        /**
+          * The `id` of the component
+         */
+        "idProp": string;
+        /**
+          * The `active` state of the component
+         */
+        "isActive"?: boolean;
+        /**
+          * The `selected` state of the component
+         */
+        "isSelected"?: boolean;
+        /**
+          * The `Mode` of the component > `lowercase`, `uppercase` or `specials`
+         */
+        "mode"?: VirtualKeyboardMode;
+        /**
+          * A function triggered on `click` event on the component
+         */
+        "pressKey"?: (T: string) => void;
+        /**
+          * The symbol displayed on the component
+         */
+        "sign": string;
+        /**
+          * An alternative symbol displayed after clicked on the *special button*
+         */
+        "special"?: string;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -88,6 +187,8 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "ds-button": DsButton;
+        "ds-virtualkeyboard": DsVirtualkeyboard;
+        "ds-virtualkeyboard-key": DsVirtualkeyboardKey;
         "my-component": MyComponent;
     }
 }
@@ -96,6 +197,8 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "ds-button": LocalJSX.DsButton & JSXBase.HTMLAttributes<HTMLDsButtonElement>;
+            "ds-virtualkeyboard": LocalJSX.DsVirtualkeyboard & JSXBase.HTMLAttributes<HTMLDsVirtualkeyboardElement>;
+            "ds-virtualkeyboard-key": LocalJSX.DsVirtualkeyboardKey & JSXBase.HTMLAttributes<HTMLDsVirtualkeyboardKeyElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
